@@ -12,12 +12,22 @@
       <BorderPane fx:id="profilePicture" prefHeight="93.0" prefWidth="97.0" />
       <TabPane layoutX="7.0" layoutY="93.0" prefHeight="696.0" prefWidth="1052.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab fx:id="mainPage" text="Dashboard">
+            <Tab fx:id="mainPage" text="Dashboard">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab fx:id="lyrics" text="Look up lyrics">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+          <Tab text="idk yet">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
           </Tab>
-          <Tab fx:id="lyrics" text="Look up lyrics">
+          <Tab text="idk yet">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
