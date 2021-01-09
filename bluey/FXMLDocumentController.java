@@ -26,8 +26,8 @@ import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import models.ChartLyrics;
 import models.EmailValidation;
+import models.Genius;
 import models.Shazam;
 import models.User;
 
@@ -79,10 +79,10 @@ public class FXMLDocumentController implements Initializable {
             this.scene = new Scene(root);
             this.mainPageStage.setScene(scene);
             this.mainPageStage.show();
+            
             //EmailValidation validate = new EmailValidation("hsa.2244@gmail.com");
             //System.out.println(validate);
-           //ChartLyrics lyrics = new ChartLyrics("adele", "hello");
-            //this.currentStage = this.registerStage;
+            this.currentStage = this.registerStage;
         } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -126,11 +126,8 @@ public class FXMLDocumentController implements Initializable {
         String profilePic = "";
         User.usernameAcceptable(uname, upassword, uemail, favArtist, profilePic);
     }
-    @FXML
-    private void handleClickMe(ActionEvent event){
-        final WebEngine web = webView.getEngine();
-         web.load("https://genius.com/Adele-hello-lyrics");
-    }
+   
+   
     public static Stage getCurrentStage() {
         return FXMLDocumentController.currentStage;
     }
