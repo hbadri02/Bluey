@@ -6,15 +6,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="789.0" prefWidth="1060.0" stylesheets="styles/MainPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bluey.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="667.0" prefWidth="866.0" stylesheets="styles/MainPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bluey.FXMLDocumentController">
    <children>
       <Label fx:id="name" layoutX="97.0" layoutY="38.0" prefHeight="17.0" prefWidth="97.0" />
       <BorderPane fx:id="profilePicture" prefHeight="93.0" prefWidth="97.0" />
-      <TabPane layoutX="7.0" layoutY="93.0" prefHeight="696.0" prefWidth="1052.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="7.0" layoutY="99.0" prefHeight="583.0" prefWidth="860.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
             <Tab fx:id="mainPage" text="Dashboard">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="558.0" prefWidth="924.0">
+                     <children>
+                        <fx:include source="../views/Dashboard.fxml" />
+                     </children></AnchorPane>
               </content>
             </Tab>
             <Tab fx:id="lyrics" text="Look up lyrics">
