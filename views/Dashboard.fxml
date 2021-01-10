@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="924.0" stylesheets="styles/MainPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Dashboard">
+<AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="842.0" stylesheets="styles/MainPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Dashboard">
    <children>
-      <Button fx:id="choose" layoutX="676.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleChooseButton" text="Choose" />
-      <TextField fx:id="favArtist" layoutX="500.0" layoutY="23.0" promptText="Type in your favorite artist" />
-      <WebView fx:id="favArtistWebView" layoutX="516.0" layoutY="78.0" prefHeight="178.0" prefWidth="182.0" />
+      <Button fx:id="choose" layoutX="768.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleChooseButton" text="Choose" />
+      <TextField fx:id="favArtist" layoutX="606.0" layoutY="23.0" promptText="Type in your favorite artist" />
+      <WebView fx:id="favArtistWebView" layoutX="629.0" layoutY="89.0" prefHeight="162.0" prefWidth="174.0" />
    </children>
 </AnchorPane>
