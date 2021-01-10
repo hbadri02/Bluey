@@ -61,7 +61,7 @@ public class FXMLDocumentController implements Initializable {
     private final String REGISTER_VIEW_LOCATION = "/views/RegisterPage.fxml";
     @FXML
     private final String MAINPAGE_VIEW_LOCATION = "/views/MainPage.fxml";
-    private static String uname;
+    public static String uname;
     String upassword;
     String uemail;
     
