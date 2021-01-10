@@ -37,30 +37,20 @@ import models.User;
  */
 public class FXMLDocumentController implements Initializable {
     
-    @FXML
-    private WebView webView;
-    @FXML
-    private Label name;
-    @FXML
-    private BorderPane profilePicture;
+    
+    @FXML private WebView bannerartist;
+    @FXML private Label name;
+    @FXML private BorderPane profilePicture;
     @FXML private ImageView imageView;
-    @FXML private TextField email; 
-    @FXML
-    private TextField username; 
-    @FXML
-    private PasswordField password; 
-    @FXML
-    public static Scene scene;
-    @FXML
-    private static Stage registerStage;
-    @FXML
-    private static Stage currentStage;
-    @FXML
-    private static Stage mainPageStage;
-    @FXML
-    private final String REGISTER_VIEW_LOCATION = "/views/RegisterPage.fxml";
-    @FXML
-    private final String MAINPAGE_VIEW_LOCATION = "/views/MainPage.fxml";
+    @FXML private TextField email;
+    @FXML private TextField username;
+    @FXML private PasswordField password;
+    @FXML public static Scene scene;
+    @FXML private static Stage registerStage;
+    @FXML private static Stage currentStage;
+    @FXML private static Stage mainPageStage;
+    @FXML private final String REGISTER_VIEW_LOCATION = "/views/RegisterPage.fxml";
+    @FXML private final String MAINPAGE_VIEW_LOCATION = "/views/MainPage.fxml";
     public static String uname;
     String upassword;
     String uemail;
@@ -79,6 +69,8 @@ public class FXMLDocumentController implements Initializable {
             this.scene = new Scene(root);
             this.mainPageStage.setScene(scene);
             this.mainPageStage.show();
+            //displayBanner();
+
             
             //EmailValidation validate = new EmailValidation("hsa.2244@gmail.com");
             //System.out.println(validate);
@@ -90,6 +82,15 @@ public class FXMLDocumentController implements Initializable {
         else
             System.out.println("ops!");
     }
+    /*
+     private void displayBanner(){
+         User bannery = new User();
+         String favy = bannery.getFavoriteArtist();
+         Genius banner = new Genius(favy);
+         WebEngine web2 = bannerView.getEngine();
+         String image = banner.artistBanner();
+         web2.load(image);
+    }*/
     
     /*Handles the action when a user clicks Register and takes them to
     another window to fill up the information.
@@ -126,6 +127,15 @@ public class FXMLDocumentController implements Initializable {
         String profilePic = "";
         User.usernameAcceptable(uname, upassword, uemail, favArtist, profilePic);
     }
+    @FXML
+    private void handleCheck(ActionEvent event){
+       User bannery = new User();
+         String favy = bannery.getFavoriteArtist();
+         Genius banner = new Genius(favy);
+         WebEngine web2 = bannerartist.getEngine();
+         String imagee = banner.artistBanner();
+         web2.load(imagee); 
+    }
    
    
     public static Stage getCurrentStage() {
@@ -135,6 +145,7 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         FXMLDocumentController.currentStage = bluey.Bluey.newStage;
         if (this.name != null)
-            this.name.setText("Hello " + uname);    
+            this.name.setText("Hello " + uname);
+        
 }
 }

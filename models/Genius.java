@@ -22,8 +22,10 @@ public class Genius {
     public final LinkedList<String> top10SongsList = new LinkedList();
     private JSONArray artists;
     private final JSONObject track;
+    private JSONObject picturePath;
     private int idNumber;
     private String artistPicture;
+    private String artistBanner;
 
     public Genius(String name) {
         String url = idURL + name;
@@ -46,11 +48,17 @@ public class Genius {
     }
 
     public String artistPicture() {
-        JSONObject picturePath = track.getJSONObject("primary_artist");
+        this.picturePath = track.getJSONObject("primary_artist");
         this.artistPicture = picturePath.getString("image_url");
         return artistPicture;
     }
     public String getPicturePath(){
         return this.artistPicture;
+    }
+
+    public String artistBanner() {
+        this.picturePath = track.getJSONObject("primary_artist");
+       this.artistBanner = picturePath.getString("header_image_url");
+        return artistBanner;
     }
 }
