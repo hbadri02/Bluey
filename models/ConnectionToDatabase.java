@@ -46,7 +46,7 @@ public class ConnectionToDatabase {
      * @param _favoriteArtist
      * @param _profilePicture
      */
-    public void userDatabase(String _username, String _password, String _email, String _favoriteArtist, String _profilePicture) {
+   public void userDatabase(String _username, String _password, String _email, String _favoriteArtist, String _profilePicture) {
         try {
             /**
              * This works
@@ -64,11 +64,17 @@ public class ConnectionToDatabase {
             preparedStmt.setString(5, _profilePicture);
             // execute the preparedstatement
             preparedStmt.execute();
-            if (DEBUG){System.out.println("Registration Success");}
+            if (DEBUG) {
+                System.out.println("Registration Success");
+            }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
+    public void userFavoriteArtist(String _favoriteArtist){
+        
+    }
+
     public String getSHA256(String _input) {
         // MessageDigest used to hash bytes from input string
         MessageDigest md = null;
@@ -87,31 +93,78 @@ public class ConnectionToDatabase {
         }
         return hexStr.toString();
     }
-     /**
-     * Get the id of a user given their username.
-     * @param _username
-     * @return
-     */
-    public int getIdFromUsername(String _username) {
-        int id = -1;
+
+    public String getProfilePictureFromUsername(String _username) {
+        String profilePicture = "";
         try {
-            // Insert statement, using prepared statements
+
             String query = "SELECT * from users where username = '" + _username + "'";
-            // create the mysql insert preparedstatement
-            if (DEBUG){
+
+            if (DEBUG) {
                 System.out.println(_username + " user");
             }
             PreparedStatement preparedStmt = this.con.prepareStatement(query);
             ResultSet result = preparedStmt.executeQuery(query);
-            while(result.next()) {
-                id = result.getInt("userID");
+            while (result.next()) {
+                profilePicture = result.getString("ProfilePicture");
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        return id;
+        return profilePicture;
+    }
+
+    public String getFavoriteArtistFromUsername(String _username) {
+        String favArtistName = "";
+        try {
+            // Insert statement, using prepared statements
+            String query = "SELECT * from users where username = '" + _username + "'";
+            // create the mysql insert preparedstatement
+            if (DEBUG) {
+                System.out.println(_username + " user");
+            }
+            PreparedStatement preparedStmt = this.con.prepareStatement(query);
+            ResultSet result = preparedStmt.executeQuery(query);
+            while (result.next()) {
+                favArtistName = result.getString("FavoriteArtist");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return favArtistName;
     }
     
+    public boolean changeFavoriteArtist(String _username, String _artistName) {
+        try {
+            // Update row value
+            String query = " UPDATE users SET FavoriteArtist = " + "'" + _artistName + "'"
+                    + " WHERE username = " + "'" + _username + "'";
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = this.con.prepareStatement(query);
+            // execute the preparedstatement
+            preparedStmt.execute();
+            if (DEBUG){System.out.println("Artist reset");}
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return true;
+    }
+    
+    private void changeProfilePicture(String _username, String _profilePicture) {
+        try {
+            // Update row value
+            String query = " UPDATE users SET ProfilePicture = " + "'" + _profilePicture + "'"
+                    + " WHERE username = " + "'" + _username + "'";
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = this.con.prepareStatement(query);
+            // execute the preparedstatement
+            preparedStmt.execute();
+            if (DEBUG){System.out.println("Artist reset");}
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public boolean validateLogin(String _userName, String _userPass) {
         boolean isValid = false;
         try {
@@ -138,7 +191,7 @@ public class ConnectionToDatabase {
         }
         return isValid;
     }
-    
+
     private boolean validatePassword(String _password, String _dbHash) {
         return getSHA256(_password).equals(_dbHash);
     }
