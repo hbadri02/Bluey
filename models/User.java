@@ -15,7 +15,12 @@ public class User {
     private final String password;
     private String email;
     private String path;
-    private final ConnectionToDatabase CONN;
+    private ConnectionToDatabase CONN;
+    String unamee = bluey.FXMLDocumentController.uname;
+    public User() {
+        username = unamee;
+        password = "";
+    }
 
     public User(String _username, String _password) {
         this.username = _username;
@@ -40,4 +45,23 @@ public class User {
         }
         return isValid; 
     }
+
+    
+    public static boolean chooseFavoriteArtist(String _uname, String _aname){
+        boolean in = false;
+        ConnectionToDatabase conn = new ConnectionToDatabase();
+        conn.changeFavoriteArtist(_uname, _aname);
+        conn.close();
+        System.out.println("successful");
+        return true;
+    }
+
+    public String getFavoriteArtist(){
+        String favArtist;
+        ConnectionToDatabase conn = new ConnectionToDatabase();
+        favArtist = conn.getFavoriteArtistFromUsername(unamee);
+        conn.close();
+        return favArtist;
+    }
+    
 }
