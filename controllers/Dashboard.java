@@ -24,7 +24,6 @@ public class Dashboard {
     @FXML private  TextField favArtist;
     @FXML private Button choose;
     @FXML private WebView favArtistWebView; 
-    @FXML private WebView bannerviewww;
     public String artistChoice;
     public static FXMLDocumentController tas;
     //private User USER = FXMLDocumentController.getUser();
@@ -35,10 +34,11 @@ public class Dashboard {
         this.artistChoice = this.favArtist.getText();
         String nameWithoutSpaces = artistChoice.replaceAll(" ", "%20");
         Genius one = new Genius(nameWithoutSpaces);
-        final WebEngine web = favArtistWebView.getEngine();
+        WebEngine web = favArtistWebView.getEngine();
         String image = one.artistPicture();
         web.load(image);
         User.chooseFavoriteArtist(unamee, artistChoice);
+        
         
     }
 
