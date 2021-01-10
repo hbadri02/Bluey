@@ -4,29 +4,44 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="491.0" prefWidth="600.0" stylesheets="styles/LoginPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bluey.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="498.0" prefWidth="578.0" stylesheets="styles/LoginPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bluey.FXMLDocumentController">
     <children>
-        <Label fx:id="label" layoutX="203.0" layoutY="14.0" minHeight="16" minWidth="69" prefHeight="36.0" prefWidth="194.0" text="Welcome to Bluey" textFill="#04069e">
+        <Label fx:id="label" layoutX="192.0" layoutY="167.0" minHeight="16" minWidth="69" prefHeight="36.0" prefWidth="194.0" text="Welcome to Bluey" textFill="#04069e">
          <font>
             <Font size="24.0" />
          </font></Label>
-      <TextField fx:id="username" layoutX="226.0" layoutY="113.0" promptText="Username" />
-      <PasswordField fx:id="password" layoutX="226.0" layoutY="147.0" promptText="Password" />
-      <Button layoutX="278.0" layoutY="183.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" textFill="#1604d7" />
-      <Text layoutX="246.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Existing user?">
+      <TextField fx:id="username" layoutX="378.0" layoutY="252.0" promptText="Username" />
+      <PasswordField fx:id="password" layoutX="378.0" layoutY="287.0" promptText="Password" />
+      <Button layoutX="423.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" textFill="#1604d7" />
+      <Text layoutX="399.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Existing user?">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="260.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New user?">
+      <Text layoutX="59.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New user?" wrappingWidth="84.0">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Button layoutX="271.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleRegister" text="Register" />
+      <Button layoutX="71.0" layoutY="425.0" mnemonicParsing="false" onAction="#handleRegister" text="Register" />
+      <ImageView fitHeight="231.0" fitWidth="578.0" layoutY="-24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../styles/banner.jpg" />
+         </image>
+      </ImageView>
+      <Button layoutX="468.0" layoutY="388.0" mnemonicParsing="false" text="Forgot Password" />
+      <Button layoutX="332.0" layoutY="388.0" mnemonicParsing="false" text="Forgot Username" />
+      <Text fill="#eb0808" layoutX="41.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTER RIGHT NOW" />
+      <ImageView fitHeight="124.0" fitWidth="165.0" layoutX="42.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../styles/IMG_7672.JPG" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
