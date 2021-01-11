@@ -5,6 +5,7 @@
  */
 package bluey;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -82,19 +84,7 @@ public class FXMLDocumentController implements Initializable {
         else
             System.out.println("ops!");
     }
-    /*
-     private void displayBanner(){
-         User bannery = new User();
-         String favy = bannery.getFavoriteArtist();
-         Genius banner = new Genius(favy);
-         WebEngine web2 = bannerView.getEngine();
-         String image = banner.artistBanner();
-         web2.load(image);
-    }*/
-    
-    /*Handles the action when a user clicks Register and takes them to
-    another window to fill up the information.
-    */
+
     @FXML
     private void handleRegister(ActionEvent event) {
         System.out.println("Register button clicked");
@@ -127,15 +117,17 @@ public class FXMLDocumentController implements Initializable {
         String profilePic = "";
         User.usernameAcceptable(uname, upassword, uemail, favArtist, profilePic);
     }
-    @FXML
-    private void handleCheck(ActionEvent event){
-       User bannery = new User();
-         String favy = bannery.getFavoriteArtist();
-         Genius banner = new Genius(favy);
-         WebEngine web2 = bannerartist.getEngine();
-         String imagee = banner.artistBanner();
-         web2.load(imagee); 
-    }
+    
+    private void profilePicture(){
+        if(this.bannerartist != null){
+            User tempUser = new User();
+            String pathFromUser = tempUser.getFavoriteArtist();
+            String nameWithoutSpaces = pathFromUser.replaceAll(" ", "%20");
+            Genius banner = new Genius(nameWithoutSpaces);
+            String imagee = banner.artistBanner();
+            WebEngine web2 = bannerartist.getEngine();
+            web2.load(imagee); 
+    }}
    
    
     public static Stage getCurrentStage() {
@@ -144,6 +136,7 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         FXMLDocumentController.currentStage = bluey.Bluey.newStage;
+        profilePicture();
         if (this.name != null)
             this.name.setText("Hello " + uname);
         
