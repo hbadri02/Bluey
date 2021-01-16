@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="842.0" stylesheets="styles/MainPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Dashboard">
+<AnchorPane id="AnchorPane" prefHeight="472.0" prefWidth="630.0" stylesheets="styles/MainPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Dashboard">
    <children>
-      <Button fx:id="choose" layoutX="768.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleChooseButton" text="Choose" />
-      <TextField fx:id="favArtist" layoutX="606.0" layoutY="23.0" promptText="Type in your favorite artist" />
-      <WebView fx:id="favArtistWebView" layoutX="629.0" layoutY="89.0" prefHeight="162.0" prefWidth="174.0" />
+      <Button fx:id="choose" layoutX="567.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleChooseButton" text="Choose" />
+      <TextField fx:id="favArtist" layoutX="405.0" layoutY="23.0" promptText="Type in your favorite artist" />
+      <WebView fx:id="favArtistWebView" layoutX="393.0" layoutY="102.0" prefHeight="162.0" prefWidth="174.0" />
+      <ListView fx:id="listy" layoutY="36.0" prefHeight="479.0" prefWidth="294.0" />
+      <Text fill="#1404f2" fontSmoothingType="LCD" layoutX="33.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Most Shazamed Songs">
+         <font>
+            <Font name="Book Antiqua Bold" size="22.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
