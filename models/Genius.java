@@ -5,8 +5,16 @@
  */
 package models;
 
+import controllers.LyricsTab;
 import java.util.LinkedList;
+import javafx.beans.binding.Bindings;
+import javafx.fxml.FXML;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -25,8 +33,13 @@ public class Genius {
     private String artistPicture;
     private String artistBanner;
     public static LinkedList<String> searchResults = new LinkedList();
+    @FXML
+    //public WebView showLyrics = LyricsTab.showLyrics;
     private ListView list;
     private JSONArray array;
+    private JSONArray arrayl;
+
+    private int place;
 
     public Genius(String name) {
         String url = idURL + name;
@@ -40,7 +53,7 @@ public class Genius {
     }
 
     public Genius() {
-        
+
     }
 
     private int getIDNumberFromName() {
@@ -53,23 +66,23 @@ public class Genius {
         this.artistPicture = picturePath.getString("image_url");
         return artistPicture;
     }
-    
-    public String getPicturePath(){
+
+    public String getPicturePath() {
         return this.artistPicture;
     }
 
     public String artistBanner() {
         this.picturePath = track.getJSONObject("primary_artist");
-       this.artistBanner = picturePath.getString("header_image_url");
+        this.artistBanner = picturePath.getString("header_image_url");
         return artistBanner;
     }
-    
-    public void songLyrics(ListView optionsList, String name){
+
+    public void songLyrics(ListView optionsList, String name) {
         String url = idURL + name;
         ConnectionToRapidAPI api = new ConnectionToRapidAPI(url, key, host);
         JSONObject job = api.getJsonObject();
         JSONObject tracks = job.getJSONObject("response");
-        JSONArray arrayl = tracks.getJSONArray("hits");
+        this.arrayl = tracks.getJSONArray("hits");
         this.list = optionsList;
         searchResults.clear();
         optionsList.getItems().removeAll();
@@ -83,5 +96,28 @@ public class Genius {
         for (int i = 0; i < this.searchResults.size(); i++) {
             optionsList.getItems().add(this.searchResults.get(i));
         }
+        ListCell<String> cell = new ListCell<>();
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem viewLyrics = new MenuItem();
+        viewLyrics.textProperty().bind(Bindings.format("View lyrics"));
+        viewLyrics.setOnAction(event -> {
+            String nameee = cell.getItem();
+            this.place = optionsList.getSelectionModel().getSelectedIndex();
+            JSONObject tempo = arrayl.getJSONObject(place);
+            this.track = tempo.getJSONObject("result");
+            String urlLyrics = track.getString("url");
+            //WebEngine webq = LyricsTab.showLyrics.getEngine();
+            //webq.load(urlLyrics);
+
+        });
+        contextMenu.getItems().addAll(viewLyrics);
+        optionsList.setContextMenu(contextMenu);
+    }
+
+    public String getLyricsURL() {
+        JSONObject tempo = arrayl.getJSONObject(place);
+        this.track = tempo.getJSONObject("result");
+        String urlLyrics = track.getString("url");
+        return urlLyrics;
     }
 }
