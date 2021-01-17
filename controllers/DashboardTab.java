@@ -5,7 +5,6 @@
  */
 package controllers;
 
-
 import bluey.FXMLDocumentController;
 import java.net.URL;
 import java.util.LinkedList;
@@ -15,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -27,7 +25,7 @@ import models.User;
  *
  * @author HBadr
  */
-public class Dashboard implements Initializable{
+public class DashboardTab implements Initializable{
     @FXML private  TextField favArtist;
     @FXML private Button choose;
     @FXML private WebView favArtistWebView; 

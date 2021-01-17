@@ -21,7 +21,10 @@
             </Tab>
             <Tab fx:id="lyrics" text="Look up lyrics">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <children>
+                        <fx:include source="../views/Lyrics.fxml" />
+                     </children></AnchorPane>
               </content>
             </Tab>
           <Tab text="idk yet">
@@ -37,7 +40,7 @@
         </tabs>
       </TabPane>
       <BorderPane fx:id="profilePicture" layoutX="-11.0" prefHeight="93.0" prefWidth="97.0" />
-      <WebView fx:id="bannerartist" layoutX="168.0" layoutY="14.0" prefHeight="77.0" prefWidth="532.0" />
+      <WebView fx:id="bannerartist" layoutX="629.0" layoutY="13.0" prefHeight="70.0" prefWidth="97.0" />
       <Label fx:id="name" layoutX="74.0" layoutY="39.0" prefHeight="17.0" prefWidth="97.0" textFill="RED" />
    </children>
 </AnchorPane>

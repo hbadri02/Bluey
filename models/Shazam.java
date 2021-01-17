@@ -41,7 +41,7 @@ public class Shazam {
         ConnectionToRapidAPI api = new ConnectionToRapidAPI(url, key, host);
         JSONObject job = api.getJsonObject();
         JSONObject tracks = job.getJSONObject("tracks");
-        JSONArray array = tracks.getJSONArray("hits");
+        array = tracks.getJSONArray("hits");
         JSONObject temp = array.getJSONObject(0);
         this.track = temp.getJSONObject("track");
         top10Songs(getIDNumberFromName());
