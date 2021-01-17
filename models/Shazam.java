@@ -5,8 +5,18 @@
  */
 package models;
 
+import controllers.LyricsTab;
 import java.util.LinkedList;
+import javafx.beans.binding.Bindings;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.web.WebView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -77,6 +87,5 @@ public class Shazam {
         for (int i = 0; i < this.top10SongsList.size(); i++) {
             listy.getItems().add(this.top10SongsList.get(i));
         }
-
     }
 }
