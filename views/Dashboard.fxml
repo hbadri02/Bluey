@@ -8,11 +8,11 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane id="AnchorPane" prefHeight="472.0" prefWidth="630.0" stylesheets="styles/MainPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Dashboard">
+<AnchorPane id="AnchorPane" prefHeight="472.0" prefWidth="630.0" stylesheets="styles/MainPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardTab">
    <children>
-      <Button fx:id="choose" layoutX="567.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleChooseButton" text="Choose" />
-      <TextField fx:id="favArtist" layoutX="405.0" layoutY="23.0" promptText="Type in your favorite artist" />
-      <WebView fx:id="favArtistWebView" layoutX="393.0" layoutY="102.0" prefHeight="162.0" prefWidth="174.0" />
+      <Button fx:id="choose" layoutX="539.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleChooseButton" text="Search" />
+      <TextField fx:id="favArtist" layoutX="371.0" layoutY="23.0" promptText="Search an artist" />
+      <WebView fx:id="favArtistWebView" layoutX="376.0" layoutY="89.0" prefHeight="142.0" prefWidth="139.0" />
       <ListView fx:id="listy" layoutY="36.0" prefHeight="479.0" prefWidth="294.0" />
       <Text fill="#1404f2" fontSmoothingType="LCD" layoutX="33.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Most Shazamed Songs">
          <font>
