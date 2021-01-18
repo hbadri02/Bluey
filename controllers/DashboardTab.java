@@ -32,12 +32,11 @@ public class DashboardTab implements Initializable{
     @FXML private ListView listy;
     public String nameWithoutSpaces;
     public static FXMLDocumentController tas;
-    //private User USER = FXMLDocumentController.getUser();
     String unamee = bluey.FXMLDocumentController.uname;
     private LinkedList<String> top10SongsList = models.Shazam.top10SongsList;
     
      @FXML
-    private void handleChooseButton(ActionEvent event){
+    private void handleChooseButton(ActionEvent _event){
         String artistChoice = this.favArtist.getText();
          this.nameWithoutSpaces = artistChoice.replaceAll(" ", "%20");
         Genius one = new Genius(nameWithoutSpaces);

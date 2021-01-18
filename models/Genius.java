@@ -14,7 +14,6 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -22,7 +21,7 @@ import org.json.JSONObject;
  *
  * @author HBadr
  */
-public class Genius {
+public class Genius extends LyricsTab{
 
     private final String key = "ee0b3a7e09mshb39bb62b99ec98ep1662d5jsn43647b0343b6";
     private final String host = "genius.p.rapidapi.com";
@@ -106,8 +105,8 @@ public class Genius {
             JSONObject tempo = arrayl.getJSONObject(place);
             this.track = tempo.getJSONObject("result");
             String urlLyrics = track.getString("url");
-            //WebEngine webq = LyricsTab.showLyrics.getEngine();
-            //webq.load(urlLyrics);
+            WebEngine webq = static_showLyrics.getEngine();
+            webq.load(urlLyrics);
 
         });
         contextMenu.getItems().addAll(viewLyrics);
