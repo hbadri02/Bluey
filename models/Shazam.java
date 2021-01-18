@@ -5,18 +5,8 @@
  */
 package models;
 
-import controllers.LyricsTab;
 import java.util.LinkedList;
-import javafx.beans.binding.Bindings;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.MenuItem;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.web.WebView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -36,7 +26,6 @@ public class Shazam {
     private int idNumber;
     private ListView list;
     private JSONArray array;
-
     public Shazam() {
 
     }
@@ -46,8 +35,8 @@ public class Shazam {
      * @param listy
      * @param name
      */
-    private void Shazam(String name) {
-        String url = idURL + name + "&locale=en-US&offset=0&limit=5";
+    private void Shazam(String _name) {
+        String url = idURL + _name + "&locale=en-US&offset=0&limit=5";
         ConnectionToRapidAPI api = new ConnectionToRapidAPI(url, key, host);
         JSONObject job = api.getJsonObject();
         JSONObject tracks = job.getJSONObject("tracks");
@@ -64,28 +53,27 @@ public class Shazam {
         return idNumber;
     }
 
-    public void top10Songs(int id) {
-        id = this.idNumber;
-        String url = topSongsURL + id + "&locale=en-US";
+    public void top10Songs(int _id) {
+        _id = this.idNumber;
+        String url = topSongsURL + _id + "&locale=en-US";
         ConnectionToRapidAPI api = new ConnectionToRapidAPI(url, key, host);
         JSONObject job = api.getJsonObject();
         this.array = job.getJSONArray("tracks");
-
     }
 
-    public void populatetop10SongsList(ListView listy, String name) {
-        Shazam(name);
-        this.list = listy;
+    public void populatetop10SongsList(ListView _listy, String _name) {
+        Shazam(_name);
+        this.list = _listy;
         top10SongsList.clear();
-        listy.getItems().removeAll();
-        listy.getItems().clear();
+        _listy.getItems().removeAll();
+        _listy.getItems().clear();
         for (int count = 0; count < 20; count++) {
             JSONObject temp = array.getJSONObject(count);
             String teme = temp.getString("title");
             top10SongsList.add(teme);
         }
         for (int i = 0; i < this.top10SongsList.size(); i++) {
-            listy.getItems().add(this.top10SongsList.get(i));
+            _listy.getItems().add(this.top10SongsList.get(i));
         }
     }
 }

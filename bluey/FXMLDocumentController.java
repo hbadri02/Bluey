@@ -58,7 +58,7 @@ public class FXMLDocumentController implements Initializable {
     String uemail;
     
     @FXML
-    private void handleLogin(ActionEvent event){
+    private void handleLogin(ActionEvent _event){
         uname = this.username.getText();
         upassword = this.password.getText();
         if(User.loginInformationAcceptable(uname, upassword)){
@@ -86,7 +86,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleRegister(ActionEvent event) {
+    private void handleRegister(ActionEvent _event) {
         System.out.println("Register button clicked");
         Parent root;
         try {
@@ -108,7 +108,7 @@ public class FXMLDocumentController implements Initializable {
     fill the information in the table in the database.
     */
     @FXML
-    private void handleSubmit(ActionEvent event){
+    private void handleSubmit(ActionEvent _event){
         System.out.println("Submit button clicked");
         this.uname = this.username.getText();
         this.upassword = this.password.getText();
