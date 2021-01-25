@@ -24,10 +24,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import models.Genius;
 import models.User;
 
 /**
@@ -175,10 +177,10 @@ public class FXMLDocumentController implements Initializable {
             User tempUser = new User();
             String pathFromUser = tempUser.getFavoriteArtist();
             String nameWithoutSpaces = pathFromUser.replaceAll(" ", "%20");
-            //Genius banner = new Genius(nameWithoutSpaces);
-            //String imagee = banner.artistBanner();
-            //WebEngine web2 = bannerartist.getEngine();
-            //web2.load(imagee);
+            Genius banner = new Genius(nameWithoutSpaces);
+            String imagee = banner.artistBanner();
+            WebEngine web2 = bannerartist.getEngine();
+            web2.load(imagee);
         }
     }
 

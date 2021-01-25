@@ -40,12 +40,12 @@ public class DashboardTab implements Initializable{
         String artistChoice = this.favArtist.getText();
          this.nameWithoutSpaces = artistChoice.replaceAll(" ", "%20");
         
-        //Genius one = new Genius(nameWithoutSpaces);
-        //WebEngine web = favArtistWebView.getEngine();
-        //String image = one.artistPicture();
-        //web.load(image);
-        //User.chooseFavoriteArtist(unamee, artistChoice);
-        //populateSongsList();   
+        Genius one = new Genius(nameWithoutSpaces);
+        WebEngine web = favArtistWebView.getEngine();
+        String image = one.artistPicture();
+        web.load(image);
+        User.chooseFavoriteArtist(unamee, artistChoice);
+        populateSongsList();   
     }
     public void populateSongsList() {
         User tempUser = new User();
@@ -56,7 +56,7 @@ public class DashboardTab implements Initializable{
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //populateSongsList();
+        populateSongsList();
     }
 
 }
