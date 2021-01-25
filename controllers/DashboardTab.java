@@ -26,7 +26,7 @@ import models.User;
  * @author HBadr
  */
 public class DashboardTab implements Initializable{
-    @FXML private  TextField favArtist;
+    @FXML private TextField favArtist;
     @FXML private Button choose;
     @FXML private WebView favArtistWebView; 
     @FXML private ListView listy;
@@ -39,12 +39,13 @@ public class DashboardTab implements Initializable{
     private void handleChooseButton(ActionEvent _event){
         String artistChoice = this.favArtist.getText();
          this.nameWithoutSpaces = artistChoice.replaceAll(" ", "%20");
-        Genius one = new Genius(nameWithoutSpaces);
-        WebEngine web = favArtistWebView.getEngine();
-        String image = one.artistPicture();
-        web.load(image);
-        User.chooseFavoriteArtist(unamee, artistChoice);
-        populateSongsList();   
+        
+        //Genius one = new Genius(nameWithoutSpaces);
+        //WebEngine web = favArtistWebView.getEngine();
+        //String image = one.artistPicture();
+        //web.load(image);
+        //User.chooseFavoriteArtist(unamee, artistChoice);
+        //populateSongsList();   
     }
     public void populateSongsList() {
         User tempUser = new User();
@@ -55,7 +56,7 @@ public class DashboardTab implements Initializable{
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        populateSongsList();
+        //populateSongsList();
     }
 
 }

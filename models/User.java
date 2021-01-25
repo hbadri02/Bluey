@@ -5,6 +5,8 @@
  */
 package models;
 
+import java.io.File;
+
 /**
  *
  * @author HBadr
@@ -15,7 +17,8 @@ public class User {
     private final String password;
     private String email;
     private String path;
-    private ConnectionToDatabase CONN;
+    private static boolean changed;
+    private static ConnectionToDatabase connect;
     String unamee = bluey.FXMLDocumentController.uname;
     public User() {
         username = unamee;
@@ -25,7 +28,7 @@ public class User {
     public User(String _username, String _password) {
         this.username = _username;
         this.password = _password;
-        this.CONN = new ConnectionToDatabase();
+        this.connect = new ConnectionToDatabase();
     }
 
     public static boolean usernameAcceptable(String _uname, String _password, String _email, String _favArtist, String _profilePic) {
@@ -33,27 +36,36 @@ public class User {
         ConnectionToDatabase conn = new ConnectionToDatabase();
         conn.userDatabase(_uname, _password, _email, _favArtist, _profilePic);
         conn.close();
-        System.out.println("Connection successful");
+        System.out.println("Connection successful to lvaidate");
         return true;
     }
     
     public static boolean loginInformationAcceptable(String _uname, String _password){
-        boolean isValid = false;
         ConnectionToDatabase conn = new ConnectionToDatabase();
         if(conn.validateLogin(_uname, _uname)){
             return true;
         }
-        return isValid; 
+        return changed; 
     }
 
     
     public static boolean chooseFavoriteArtist(String _uname, String _aname){
-        boolean in = false;
         ConnectionToDatabase conn = new ConnectionToDatabase();
-        conn.changeFavoriteArtist(_uname, _aname);
+        if(conn.changeFavoriteArtist(_uname, _aname)){
+            return true;
+        }
         conn.close();
-        System.out.println("successful");
-        return true;
+        return changed;
+        
+    }
+    
+     public static boolean changeProfilePicture(String _uname, String path){
+        ConnectionToDatabase connect = new ConnectionToDatabase();
+        if(connect.changeProfilePicture(_uname, path)){
+            return true;
+        }
+        else
+            return changed;
     }
 
     public String getFavoriteArtist(){
@@ -64,4 +76,10 @@ public class User {
         return favArtist;
     }
     
+    public String getProfilePicture(){
+        ConnectionToDatabase conn = new ConnectionToDatabase();
+        String profilePicture = conn.getProfilePictureFromUsername(username);
+        conn.close();
+        return profilePicture;
+    }
 }
