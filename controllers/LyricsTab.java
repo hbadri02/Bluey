@@ -32,7 +32,6 @@ public class LyricsTab implements Initializable{
     public static WebView static_showLyrics;
     public String nameWithoutSpaces;
     public static FXMLDocumentController tas;
-    //private User USER = FXMLDocumentController.getUser();
     String unamee = bluey.FXMLDocumentController.uname;
     private LinkedList<String> searchResults = models.Genius.searchResults;
 
@@ -46,12 +45,11 @@ public class LyricsTab implements Initializable{
         }
         String artistChoice = this.searchASong.getText();
         this.nameWithoutSpaces = artistChoice.replaceAll(" ", "%20");
-        Genius one = new Genius(nameWithoutSpaces);
-        populateSongsOptionList();
+       populateSongsOptionList();
     }
 
     public void populateSongsOptionList() {
-        Genius two = new Genius();
+        Genius two = new Genius(nameWithoutSpaces);
         two.songLyrics(optionsList, nameWithoutSpaces);
     }
     

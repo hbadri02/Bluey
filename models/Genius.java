@@ -8,7 +8,6 @@ package models;
 import controllers.LyricsTab;
 import java.util.LinkedList;
 import javafx.beans.binding.Bindings;
-import javafx.fxml.FXML;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -26,18 +25,14 @@ public class Genius extends LyricsTab{
     private final String key = "ee0b3a7e09mshb39bb62b99ec98ep1662d5jsn43647b0343b6";
     private final String host = "genius.p.rapidapi.com";
     private final String idURL = "https://genius.p.rapidapi.com/search?q=";
-    private JSONObject track;
-    private JSONObject picturePath;
-    private int idNumber;
-    private String artistPicture;
-    private String artistBanner;
+    private final JSONObject track;
+    private final JSONObject picturePath;
+    private final int idNumber;
+    private final String artistPicture;
+    private final String artistBanner;
     public static LinkedList<String> searchResults = new LinkedList();
-    @FXML
-    //public WebView showLyrics = LyricsTab.showLyrics;
     private ListView list;
-    private JSONArray array;
-    private JSONArray arrayl;
-
+    private final JSONArray array;
     private int place;
 
     public Genius(String name) {
@@ -47,49 +42,23 @@ public class Genius extends LyricsTab{
         JSONObject tracks = job.getJSONObject("response");
         array = tracks.getJSONArray("hits");
         JSONObject temp = array.getJSONObject(0);
-        this.track = temp.getJSONObject("result");
-
+        track = temp.getJSONObject("result");
+        idNumber = track.getInt("id");
+        picturePath = track.getJSONObject("primary_artist");
+        artistPicture = picturePath.getString("image_url");
+        artistBanner = picturePath.getString("header_image_url");
     }
-
-    public Genius() {
-
-    }
-
-    private int getIDNumberFromName() {
-        this.idNumber = track.getInt("id");
-        return idNumber;
-    }
-
-    public String artistPicture() {
-        this.picturePath = track.getJSONObject("primary_artist");
-        this.artistPicture = picturePath.getString("image_url");
-        return artistPicture;
-    }
-
-    public String getPicturePath() {
-        return this.artistPicture;
-    }
-
-    public String artistBanner() {
-        this.picturePath = track.getJSONObject("primary_artist");
-        this.artistBanner = picturePath.getString("header_image_url");
-        return artistBanner;
-    }
-
+    
     public void songLyrics(ListView optionsList, String name) {
-        String url = idURL + name;
-        ConnectionToRapidAPI api = new ConnectionToRapidAPI(url, key, host);
-        JSONObject job = api.getJsonObject();
-        JSONObject tracks = job.getJSONObject("response");
-        this.arrayl = tracks.getJSONArray("hits");
+        JSONArray hitsArray = getHitsArray();
         this.list = optionsList;
         searchResults.clear();
         optionsList.getItems().removeAll();
         optionsList.getItems().clear();
-        for (int count = 0; count < arrayl.length(); count++) {
-            JSONObject temp = arrayl.getJSONObject(count);
-            this.track = temp.getJSONObject("result");
-            String teme = track.getString("full_title");
+        for (int count = 0; count < hitsArray.length(); count++) {
+            JSONObject temp = hitsArray.getJSONObject(count);
+            JSONObject result = temp.getJSONObject("result");
+            String teme = result.getString("full_title");
             searchResults.add(teme);
         }
         for (int i = 0; i < this.searchResults.size(); i++) {
@@ -102,21 +71,33 @@ public class Genius extends LyricsTab{
         viewLyrics.setOnAction(event -> {
             String nameee = cell.getItem();
             this.place = optionsList.getSelectionModel().getSelectedIndex();
-            JSONObject tempo = arrayl.getJSONObject(place);
-            this.track = tempo.getJSONObject("result");
-            String urlLyrics = track.getString("url");
+            JSONObject tempo = hitsArray.getJSONObject(place);
+            JSONObject result = tempo.getJSONObject("result");
+            String urlLyrics = result.getString("url");
             WebEngine webq = static_showLyrics.getEngine();
             webq.load(urlLyrics);
-
         });
         contextMenu.getItems().addAll(viewLyrics);
         optionsList.setContextMenu(contextMenu);
     }
+    
+    private int getIDNumberFromName() {   
+        return idNumber;
+    }
 
-    public String getLyricsURL() {
-        JSONObject tempo = arrayl.getJSONObject(place);
-        this.track = tempo.getJSONObject("result");
-        String urlLyrics = track.getString("url");
-        return urlLyrics;
+    public String artistPicture() {
+        return artistPicture;
+    }
+
+    public String getPicturePath() {
+        return artistPicture;
+    }
+
+    public String artistBanner() {    
+        return artistBanner;
+    }
+    
+    public JSONArray getHitsArray(){
+        return array;
     }
 }

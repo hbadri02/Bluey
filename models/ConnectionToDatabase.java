@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package models;
-
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -30,13 +29,13 @@ public class ConnectionToDatabase {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9384753", "sql9384753", "Fck1T7QhJM");
-            System.out.println("DB connection successful");
+            System.out.println("DB connection successful to database");
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConnectionToDatabase.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("or not");
         }
     }
-    
+
     /**
      * Insert data to the "users" table.
      *
@@ -46,7 +45,7 @@ public class ConnectionToDatabase {
      * @param _favoriteArtist
      * @param _profilePicture
      */
-   public void userDatabase(String _username, String _password, String _email, String _favoriteArtist, String _profilePicture) {
+    public void userDatabase(String _username, String _password, String _email, String _favoriteArtist, String _profilePicture) {
         try {
             /**
              * This works
@@ -70,9 +69,6 @@ public class ConnectionToDatabase {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-    }
-    public void userFavoriteArtist(String _favoriteArtist){
-        
     }
 
     public String getSHA256(String _input) {
@@ -133,7 +129,7 @@ public class ConnectionToDatabase {
         }
         return favArtistName;
     }
-    
+
     public boolean changeFavoriteArtist(String _username, String _artistName) {
         try {
             // Update row value
@@ -143,25 +139,29 @@ public class ConnectionToDatabase {
             PreparedStatement preparedStmt = this.con.prepareStatement(query);
             // execute the preparedstatement
             preparedStmt.execute();
-            if (DEBUG){System.out.println("Artist reset");}
+            if (DEBUG) {
+                System.out.println("Artist reset");
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return true;
     }
-    
-    private void changeProfilePicture(String _username, String _profilePicture) {
+
+    public boolean changeProfilePicture(String _username, String _path) {
         try {
             // Update row value
-            String query = " UPDATE users SET ProfilePicture = " + "'" + _profilePicture + "'"
-                    + " WHERE username = " + "'" + _username + "'";
+            
+            String query = " UPDATE users SET ProfilePicture=? WHERE username = " + "'" + _username + "'";
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = this.con.prepareStatement(query);
+            preparedStmt.setString(1, _path);
             // execute the preparedstatement
             preparedStmt.execute();
-            if (DEBUG){System.out.println("Artist reset");}
-        } catch (Exception ex) {
+            return true;
+        }catch (Exception ex) {
             ex.printStackTrace();
+            return false;
         }
     }
 
